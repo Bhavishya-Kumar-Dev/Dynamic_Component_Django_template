@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System Project Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 400;
+        }
+
+        .progress-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4caf50;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .team-members {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .add-task-section,
+        .add-member-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .add-task-section input,
+        .add-member-section input {
+            flex: 1;
+        }
+
+        .add-task-section button,
+        .add-member-section button {
+            width: auto;
+            padding: 12px 20px;
+            background: #4caf50;
+            white-space: nowrap;
+        }
+
+        .add-task-section button:hover,
+        .add-member-section button:hover {
+            background: #45a049;
+        }
+
+        .checkbox-item {
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .remove-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f44336;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-btn:hover {
+            background: #da190b;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .team-members-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .member-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .member-tag .remove-member {
+            background: #1976d2;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-tag .remove-member:hover {
+            background: #1565c0;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .output h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .output p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <div class="icon">⬡</div>
+            Design System Project
+        </h1>
+
+        <form id="projectForm">
+            <div class="form-group">
+                <label for="projectName">Project Name *</label>
+                <input type="text" id="projectName" name="projectName" required placeholder="Enter project name">
+            </div>
+
+            <div class="form-group">
+                <label>Task List</label>
+                <div class="add-task-section">
+                    <input type="text" id="newTaskInput" placeholder="Enter task name">
+                    <button type="button" id="addTaskBtn">+ Add Task</button>
+                </div>
+                <div class="checkbox-group" id="taskList">
+                    <!-- Tasks will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="progress-info">
+                <strong>Progress Preview</strong>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressPreview" style="width: 0%"></div>
+                </div>
+                <span id="progressText">0 of 0 tasks completed (0%)</span>
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Priority *</label>
+                <select id="priority" name="priority" required>
+                    <option value="">Select priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status *</label>
+                <select id="status" name="status" required>
+                    <option value="">Select status</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Review">Review</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Team Members</label>
+                <div class="add-member-section">
+                    <input type="text" id="newMemberInput" placeholder="Enter member name">
+                    <button type="button" id="addMemberBtn">+ Add Member</button>
+                </div>
+                <div class="team-members-list" id="membersList">
+                    <!-- Members will be added here dynamically -->
+                </div>
+            </div>
+
+            <button type="submit">Create Project</button>
+        </form>
+
+        <div class="output" id="output">
+            <h3>Project Summary</h3>
+            <div id="outputContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let taskCounter = 0;
+        let teamMembers = [];
+
+        // Add Task Functionality
+        document.getElementById('addTaskBtn').addEventListener('click', function() {
+            const taskInput = document.getElementById('newTaskInput');
+            const taskName = taskInput.value.trim();
+            
+            if (taskName) {
+                addTask(taskName);
+                taskInput.value = '';
+            }
+        });
+
+        document.getElementById('newTaskInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('addTaskBtn').click();
+            }
+        });
+
+        function addTask(taskName) {
+            const taskList = document.getElementById('taskList');
+            const taskId = 'task_' + taskCounter++;
+            
+            const taskItem = document.createElement('div');
+            taskItem.className = 'checkbox-item';
+            taskItem.innerHTML = `
+                <input type="checkbox" id="${taskId}" name="tasks" value="${taskName}" onchange="updateProgress()">
+                <label for="${taskId}">${taskName}</label>
+                <button type="button" class="remove-btn" onclick="removeTask(this)">×</button>
+            `;
+            
+            taskList.appendChild(taskItem);
+            updateProgress();
+        }
+
+        function removeTask(button) {
+            button.parentElement.remove();
+            updateProgress();
+        }
+
+        // Add Team Member Functionality
+        document.getElementById('addMemberBtn').addEventListener('click', function() {
+            const memberInput = document.getElementById('newMemberInput');
+            const memberName = memberInput.value.trim();
+            
+            if (memberName) {
+                addMember(memberName);
+                memberInput.value = '';
+            }
+        });
+
+        document.getElementById('newMemberInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('addMemberBtn').click();
+            }
+        });
+
+        function addMember(memberName) {
+            const membersList = document.getElementById('membersList');
+            teamMembers.push(memberName);
+            
+            const memberTag = document.createElement('div');
+            memberTag.className = 'member-tag';
+            memberTag.innerHTML = `
+                <span>${memberName}</span>
+                <button type="button" class="remove-member" onclick="removeMember(this, '${memberName}')">×</button>
+            `;
+            
+            membersList.appendChild(memberTag);
+        }
+
+        function removeMember(button, memberName) {
+            button.parentElement.remove();
+            teamMembers = teamMembers.filter(m => m !== memberName);
+        }
+
+        // Progress Calculation
+        function updateProgress() {
+            const allTasks = document.querySelectorAll('input[name="tasks"]');
+            const completedTasks = document.querySelectorAll('input[name="tasks"]:checked');
+            
+            const total = allTasks.length;
+            const completed = completedTasks.length;
+            
+            const progressFill = document.getElementById('progressPreview');
+            const progressText = document.getElementById('progressText');
+            
+            if (total > 0) {
+                const percentage = Math.round((completed / total) * 100);
+                progressFill.style.width = percentage + '%';
+                progressText.textContent = `${completed} of ${total} tasks completed (${percentage}%)`;
+            } else {
+                progressFill.style.width = '0%';
+                progressText.textContent = '0 of 0 tasks completed (0%)';
+            }
+        }
+
+        // Form Submission
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const tasks = [];
+            const completedTasksList = [];
+            
+            document.querySelectorAll('input[name="tasks"]').forEach(cb => {
+                tasks.push(cb.value);
+                if (cb.checked) {
+                    completedTasksList.push(cb.value);
+                }
+            });
+
+            const total = tasks.length;
+            const completed = completedTasksList.length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            const output = `
+                <p><strong>Project Name:</strong> ${formData.get('projectName')}</p>
+                <p><strong>Progress:</strong> ${completed} of ${total} tasks (${progress}%)</p>
+                <p><strong>All Tasks:</strong> ${tasks.length > 0 ? tasks.join(', ') : 'No tasks added'}</p>
+                <p><strong>Completed Tasks:</strong> ${completedTasksList.length > 0 ? completedTasksList.join(', ') : 'None completed'}</p>
+                <p><strong>Priority:</strong> ${formData.get('priority')}</p>
+                <p><strong>Status:</strong> ${formData.get('status')}</p>
+                <p><strong>Team Members:</strong> ${teamMembers.length > 0 ? teamMembers.join(', ') : 'No members added'}</p>
+            `;
+
+            document.getElementById('outputContent').innerHTML = output;
+            document.getElementById('output').style.display = 'block';
+            document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
